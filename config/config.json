@@ -1,0 +1,20 @@
+{
+  "development": {
+    "username": "cleiton",
+    "password": "futuro123",
+    "database": "quiz",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  },
+  "test": {
+    "dialect": "sqlite",
+    "storage": ":memory:"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "database_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql"
+  }
+}
