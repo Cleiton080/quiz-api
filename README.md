@@ -64,3 +64,23 @@ __Responses:__
 If everything goes right the server will return a json:
 
     { "token": "hash" }
+
+### Fetch the quizzes by the authenticated user
+
+__Description:__
+
+It's going to return all the quizzes which the authenticated user are related with.
+
+__Request:__
+
+_Get /quiz_
+
+__Headers__
+
++ _x-access_token: Bearer "add the token here"_
+
+__Responses:__
+    
+    200 - OK.
+	401 - Unauthorized.
+    500 - Server Error.
