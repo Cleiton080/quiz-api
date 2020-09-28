@@ -14,5 +14,25 @@ router.post("/signup", async (req, res) => {
 	.then(user => res.status(201).send(user));
 });
 
+router.post("/login", async (req, res) => {
+	const { email, password } = req.body;
+	let token;
+	
+	const user = await User.findOne({
+		attributes: ["id", "username", "email", "password"],
+		where: { email }
+	});
+
+	// If the user exists and if the password is right
+	if(user.toString() && bcrypt.compareSync(password, user.password)) {
+		token = jwt.sign({auth: user}, "private_key", {expiresIn: "1h"});
+	}
+
+	if (token) {
+		res.status(200).json({ token });
+	} else {
+		res.status(404).json({ msg: "Credentials don't match!" });
+	}
+});
 
 module.exports = router;
