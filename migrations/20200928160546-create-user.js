@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       username: {
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(25),
         allowNull: false
       },
       email: {
@@ -22,7 +22,7 @@ module.exports = {
         allowNull: false
       },
       profilePicture: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING(50)
       },
       createdAt: {
         allowNull: false,
