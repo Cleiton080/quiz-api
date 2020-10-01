@@ -1,6 +1,8 @@
 # Quiz API
 
-I have been learning some technologies now, then I decided to began this simple project where I can practice my programming abilities. The endpoint is going to be written using ExpressJS and I am going to be using a relational database, Mysql. The Use Case is follow down.
+I have been learning some technologies now, then I decided to began this simple project where I can practice my programming abilities. The endpoint is going to be written using ExpressJS and I am going to be using a relational database, Mysql. 
+
+The Use Case is down below:
 
 ## Use Case
 
@@ -15,10 +17,10 @@ __Request:__
 _Post /auth/signup_
 
     {
-	    username: "name",
-        email: "email",
-		password: "password",
-		profile_picture: "picture"
+	    "username": "name",
+        "email": "email",
+		"password": "password",
+		"profilePicture": "picture"
     }
 
 __Parameters:__
@@ -26,7 +28,7 @@ __Parameters:__
 + username: required, string
 + email: required, email, unique
 + password: required, string
-+ profile_picture: url
++ profilePicture: url
   
 __Responses:__
 
@@ -46,8 +48,8 @@ __Request:__
 _Post /auth/login_
 
     {
-        email: "email",
-		password: "password"
+        "email": "exemple@email.com",
+		"password": "password"
     }
 
 __Parameters:__
@@ -74,6 +76,41 @@ It's going to return all the quizzes which the authenticated user are related wi
 __Request:__
 
 _Get /quiz_
+
+__Headers__
+
++ _x-access-token: Bearer "add the token here"_
+
+__Responses:__
+    
+    200 - OK.
+	401 - Unauthorized.
+    500 - Server Error.
+
+### Create a quiz
+
+__Description:__
+
+A authenticated user should be able to easily create a quiz.
+
+__Request:__
+
+_Post /quiz_
+
+    {
+        "title": "quiz example",
+		"questions": [
+            "question": "is this question right?",
+            "alternatives": ["yes", "no"]
+        ]
+    }
+
+__Parameters:__
+
++ title: required, string
++ questions: array
++ question: required, string
++ alternatives: required, array
 
 __Headers__
 
