@@ -1,6 +1,6 @@
 # Quiz API
 
-I have been learning some technologies now, then I decided to began this simple project where I can practice my programming abilities. The endpoint is going to be written using ExpressJS and I am going to be using a relational database, Mysql. The Use Case is folowing down.
+I have been learning some technologies now, then I decided to began this simple project where I can practice my programming abilities. The endpoint is going to be written using ExpressJS and I am going to be using a relational database, Mysql. The Use Case is follow down.
 
 ## Use Case
 
@@ -84,3 +84,11 @@ __Responses:__
     200 - OK.
 	401 - Unauthorized.
     500 - Server Error.
+
+## Database
+
+The project is running _mysql_ at the production and development stage and the _sequelize_ are being used as an Object-Relational Mapping. We are not doing automated tests yet, but I want to use _sqlite3_ in memory later on.
+
+### Schema
+
+![DATABASE SCHEMA](docs/images/databaseSchema.png)
