@@ -5,7 +5,11 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Quiz extends Model {
     static associate(models) {
-
+      Quiz.belongsToMany(models.User, {
+        through: "UsersQuizzes",
+        foreignKey: "quizId",
+        otherKey: "userId"
+      });
     }
   };
   Quiz.init({
