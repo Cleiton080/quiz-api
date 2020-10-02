@@ -23,16 +23,13 @@ router.post("/login", async (req, res) => {
 		where: { email }
 	});
 
-	// If the user exists and if the password is right
-	if(user.toString() && bcrypt.compareSync(password, user.password)) {
+	if(user && bcrypt.compareSync(password, user.password)) {
 		token = jwt.sign({auth: user}, "private_key", {expiresIn: "1h"});
 	}
 
-	if (token) {
-		res.status(200).json({ token });
-	} else {
-		res.status(404).json({ msg: "Credentials don't match!" });
-	}
+	token 
+		? res.status(200).json({ token }) 
+		: res.status(404).json({ msg: "Credentials don't match!" });
 });
 
 module.exports = router;
