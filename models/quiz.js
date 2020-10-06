@@ -10,6 +10,8 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: "quizId",
         otherKey: "userId"
       });
+
+      Quiz.hasMany(models.Question);
     }
   };
   Quiz.init({
