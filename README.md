@@ -100,8 +100,10 @@ _Post /quiz_
     {
         "title": "quiz example",
 		"questions": [
-            "question": "is this question right?",
-            "alternatives": ["yes", "no"]
+            {
+                "question": "is this question right?",
+                "alternatives": ["yes", "no"]
+            }
         ]
     }
 
