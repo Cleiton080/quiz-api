@@ -14,4 +14,17 @@ router.get("/", async (req, res) => {
     });
 });
 
+router.post("/", async (req, res) => {
+    const { title, questions } = req.body;
+    const { id } = req.auth;
+
+    await User.findByPk(id)
+        .then(async user => {
+            
+            const quiz = await Quiz.create({ title });
+
+            quiz.addUser([user]).then(() => res.status(201));
+        });
+});
+
 module.exports = router;
