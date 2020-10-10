@@ -23,9 +23,13 @@ router.post("/", async (req, res) => {
     
     quiz.addUser([user]);
     
-    for({ question } of questions || []) {
-        Question.create({ question, quizId: quiz.id });
+    if(Array.isArray(questions) && questions.length > 0) {
+        Question.bulkCreate(questions.map(question => {
+            return { ...question, quizId: quiz.id };
+        }));
     }
+    
+    res.status(200).end();
 });
 
 module.exports = router;
