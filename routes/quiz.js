@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Quiz, User, Question } = require("../models/index");
+const { Quiz, User, Question, Alternative } = require("../models/index");
 
 router.get("/", async (req, res) => {
     const userId = req.auth.id;
@@ -16,18 +16,19 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
     const { title, questions } = req.body;
-    const { id } = req.auth;
-
-    const user = await User.findByPk(id);
+    
+    const user = await User.findByPk(req.auth.id);
     const quiz = await Quiz.create({ title });
-    
+
+    questions.map(question => ({ ...question, quizId: quiz.id }))
+        .forEach(async question => {
+            const { alternatives } = question;
+            const questionCreated = await Question.create(question);
+        
+            await Alternative.bulkCreate(alternatives.map(alternative => ({ ...alternative, questionId: questionCreated.id })));
+        });
+
     quiz.addUser([user]);
-    
-    if(Array.isArray(questions) && questions.length > 0) {
-        Question.bulkCreate(questions.map(question => {
-            return { ...question, quizId: quiz.id };
-        }));
-    }
     
     res.status(200).end();
 });

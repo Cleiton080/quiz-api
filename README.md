@@ -102,7 +102,14 @@ _Post /quiz_
 		"questions": [
             {
                 "question": "is this question right?",
-                "alternatives": ["yes", "no"]
+                "alternatives": [
+                    {
+                        "alternative": "yes"
+                    },
+                    {
+                        "alternative": "no"
+                    }
+                ]
             }
         ]
     }
