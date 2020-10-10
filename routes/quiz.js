@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const { Quiz, User } = require("../models/index");
+const { Quiz, User, Question, Alternative } = require("../models/index");
 
 router.get("/", async (req, res) => {
     const userId = req.auth.id;
@@ -16,15 +16,21 @@ router.get("/", async (req, res) => {
 
 router.post("/", async (req, res) => {
     const { title, questions } = req.body;
-    const { id } = req.auth;
+    
+    const user = await User.findByPk(req.auth.id);
+    const quiz = await Quiz.create({ title });
 
-    await User.findByPk(id)
-        .then(async user => {
-            
-            const quiz = await Quiz.create({ title });
-
-            quiz.addUser([user]).then(() => res.status(201));
+    questions.map(question => ({ ...question, quizId: quiz.id }))
+        .forEach(async question => {
+            const { alternatives } = question;
+            const questionCreated = await Question.create(question);
+        
+            await Alternative.bulkCreate(alternatives.map(alternative => ({ ...alternative, questionId: questionCreated.id })));
         });
+
+    quiz.addUser([user]);
+    
+    res.status(200).end();
 });
 
 module.exports = router;
