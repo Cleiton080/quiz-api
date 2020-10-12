@@ -23,7 +23,8 @@ module.exports = {
           model: "Quizzes",
           key: "id"
         },
-        allowNull: false
+        allowNull: false,
+        onDelete: "CASCADE"
       },
       createdAt: {
         allowNull: false,

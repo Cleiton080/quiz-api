@@ -18,7 +18,8 @@ module.exports = {
         references: {
           model: 'Quizzes',
           key: 'id'
-        }
+        },
+        onDelete: "CASCADE"
       },
       createdAt: {
         allowNull: false,
