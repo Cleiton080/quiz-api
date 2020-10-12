@@ -180,16 +180,25 @@ __Responses:__
 If everything goes right the server will return a json:
 
     {
-        "title": "quiz example",
-		"questions": [
+        "id": 6,
+        "title": "My first quiz",
+        "createdAt": "2020-10-12T16:54:46.000Z",
+        "updatedAt": "2020-10-12T16:54:46.000Z",
+        "Questions": [
             {
-                "question": "is this question right?",
-                "alternatives": [
+                "id": 6,
+                "question": "What does 'OS' stand for?",
+                "quizId": 6,
+                "Alternatives": [
                     {
-                        "alternative": "yes"
+                        "id": 11,
+                        "alternative": "'OS' stands for Operating System",
+                        "questionId": 6
                     },
                     {
-                        "alternative": "no"
+                        "id": 12,
+                        "alternative": "'OS' stands for Openned System",
+                        "questionId": 6
                     }
                 ]
             }
