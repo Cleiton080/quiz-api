@@ -123,10 +123,36 @@ __Parameters:__
 
 __Headers__
 
-+ _x-access_token: Bearer "add the token here"_
++ _x-access-token: Bearer "add the token here"_
 
 __Responses:__
     
+    200 - OK.
+	401 - Unauthorized.
+    500 - Server Error.
+
+### Delete a quiz by its ID
+
+__Description:__
+
+The quiz should be deleted as such all its information related with.
+
+__Request__
+
+_Delete /quiz_
+
+    { quiz: 364 }
+
+__Parameters:__
+
++ quiz: required, number
+
+__Headers__
+
++ _x-access-token: Bearer "add the token here"_
+
+__Responses:__
+
     200 - OK.
 	401 - Unauthorized.
     500 - Server Error.
