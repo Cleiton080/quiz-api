@@ -33,4 +33,12 @@ router.post("/", async (req, res) => {
     res.status(200).end();
 });
 
+router.delete("/", async (req, res) => {
+    const { quiz } = req.body;
+    
+    await Quiz.destroy({ where: { id: quiz } })
+        .catch(err => res.status(500).json(err))
+        .then(() => res.status(200).end());
+});
+
 module.exports = router;
