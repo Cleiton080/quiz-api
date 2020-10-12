@@ -6,6 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Question extends Model {
 
     static associate(models) {
+      Question.belongsTo(models.Quiz);
       Question.hasMany(models.Alternative);
     }
   };
