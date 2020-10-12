@@ -157,6 +157,45 @@ __Responses:__
 	401 - Unauthorized.
     500 - Server Error.
 
+### Fetch a quiz by its ID
+
+__Description:__
+
+It has to return the quiz using its ID and some informations related to.
+
+__Request__
+
+_Get /quiz/{id}_
+
+__Headers__
+
++ _x-access-token: Bearer "add the token here"_
+
+__Responses:__
+    
+    200 - OK.
+	401 - Unauthorized.
+    500 - Server Error.
+
+If everything goes right the server will return a json:
+
+    {
+        "title": "quiz example",
+		"questions": [
+            {
+                "question": "is this question right?",
+                "alternatives": [
+                    {
+                        "alternative": "yes"
+                    },
+                    {
+                        "alternative": "no"
+                    }
+                ]
+            }
+        ]
+    }
+
 ## Database
 
 The project is running _mysql_ at the production and development stage and the _sequelize_ are being used as an Object-Relational Mapping. We are not doing automated tests yet, but I want to use _sqlite3_ in memory later on.
