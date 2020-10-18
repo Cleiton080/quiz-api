@@ -9,6 +9,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Alternative.init({
+    id: {
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     alternative: DataTypes.TEXT('tiny'),
     questionId: DataTypes.INTEGER
   }, {

@@ -15,6 +15,11 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   Quiz.init({
+    id: {
+      primaryKey: true,
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4
+    },
     title: DataTypes.STRING
   }, {
     sequelize,

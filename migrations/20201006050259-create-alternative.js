@@ -3,17 +3,17 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Alternatives', {
       id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       alternative: {
         type: Sequelize.TEXT('tiny'),
         allowNull: false
       },
       questionId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         references: {
           model: "Questions",
           key: "id"

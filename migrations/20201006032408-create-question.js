@@ -3,17 +3,17 @@ module.exports = {
   up: async (queryInterface, Sequelize) => {
     await queryInterface.createTable('Questions', {
       id: {
+        type: Sequelize.UUID,
+        defaultValue: Sequelize.UUIDV4,
         allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
+        primaryKey: true
       },
       question: {
         type: Sequelize.TEXT('tiny'),
         allowNull: false
       },
       quizId: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.UUID,
         allowNull: false,
         references: {
           model: 'Quizzes',
