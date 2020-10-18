@@ -15,6 +15,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4
     },
     alternative: DataTypes.TEXT('tiny'),
+    isCorrect: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false
+    },
     questionId: DataTypes.INTEGER
   }, {
     sequelize,

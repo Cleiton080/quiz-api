@@ -12,6 +12,10 @@ module.exports = {
         type: Sequelize.TEXT('tiny'),
         allowNull: false
       },
+      isCorrect: {
+        type: Sequelize.BOOLEAN,
+        defaultValue: false
+      },
       questionId: {
         type: Sequelize.UUID,
         references: {
