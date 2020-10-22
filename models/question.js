@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, UUIDV4
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Question extends Model {
@@ -14,10 +14,14 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
+      defaultValue: DataTypes.UUIDV4,
+      validate: { isUUID: 4 }
     },
     question: DataTypes.TEXT('tiny'),
-    quizId: DataTypes.INTEGER
+    quizId: {
+      type: DataTypes.UUIDV4,
+      validate: { isUUID: 4 }
+    }
   }, {
     sequelize,
     modelName: 'Question',

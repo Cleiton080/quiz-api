@@ -4,14 +4,9 @@ const jwt = require("jsonwebtoken");
 const { User } = require("../models/index");
 
 router.post("/signup", async (req, res) => {
-	const password_hash = bcrypt.hashSync(req.body.password, 10);
-
-	await User.create({
-		...req.body,
-		password: password_hash
-    })
-    .catch(err => res.status(400).send(err))
-	.then(user => res.status(201).send(user));
+	await User.create(req.body)
+    	.catch(err => res.status(400).send(err))
+		.then(user => res.status(201).send(user));
 });
 
 router.post("/login", async (req, res) => {

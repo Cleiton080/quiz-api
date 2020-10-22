@@ -12,14 +12,18 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
+      defaultValue: DataTypes.UUIDV4,
+      validate: { isUUID: 4 }
     },
     alternative: DataTypes.TEXT('tiny'),
     isCorrect: {
       type: DataTypes.BOOLEAN,
       defaultValue: false
     },
-    questionId: DataTypes.INTEGER
+    questionId: {
+      type: DataTypes.UUIDV4,
+      validate: { isUUID: 4 }
+    }
   }, {
     sequelize,
     modelName: 'Alternative',

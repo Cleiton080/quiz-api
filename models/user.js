@@ -1,7 +1,7 @@
 'use strict';
-const {
-  Model, UUIDV4
-} = require('sequelize');
+const { Model } = require('sequelize');
+const { hashSync } = require('bcryptjs');
+
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     static associate(models) {
@@ -16,7 +16,8 @@ module.exports = (sequelize, DataTypes) => {
     id: {
       primaryKey: true,
       type: DataTypes.UUID,
-      defaultValue: DataTypes.UUIDV4
+      defaultValue: DataTypes.UUIDV4,
+      validate: { isUUID: 4 }
     },
     username: {
       type: DataTypes.STRING,
@@ -34,6 +35,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     password: {
       type: DataTypes.STRING,
+      set(value) { this.setDataValue("password", hashSync(value, 10)) },
       validate: {
         notEmpty: true
       }

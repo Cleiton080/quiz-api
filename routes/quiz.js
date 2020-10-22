@@ -28,9 +28,9 @@ router.post("/", async (req, res) => {
             await Alternative.bulkCreate(alternatives.map(alternative => ({ ...alternative, questionId: questionCreated.id })));
         });
 
-    quiz.addUser([user]);
-    
-    res.status(200).end();
+    quiz.addUser([user])
+        .catch(err => res.status(500).json(err))
+        .then(_ => res.status(200).end());
 });
 
 router.get("/:quiz", async (req, res) => {
