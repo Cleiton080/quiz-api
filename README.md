@@ -288,6 +288,71 @@ If everything goes right the server will return a json:
     ]
 }
 
+### Answer a quiz
+
+__Description:__
+
+The users can answer the quizzes that they are related with.
+
+__Request:__
+
+_Post /quiz/answer_
+
+    {
+        "quiz": "b9bbf905-f442-431a-970f-bca772bcb901"
+        "answers": [
+            {
+                "question": "02c15778-d052-427c-a618-f848e22baedd",
+                "alternative": "d06d66bb-d6cc-4a4e-b1fb-5aa2066b4706"
+            },
+            {
+                "question": "cea94081-d418-4104-9637-6430e13005b3",
+                "alternative": "157a3b00-89d3-4e46-9759-96a2c6843f28"
+            },
+            {
+                "question": "f4c5104a-c02c-4598-87a1-2a46e702f38e",
+                "alternative": "ad910cdd-8214-45af-9ebe-f74a6f525606"
+            }
+        ]
+    }
+
+__Parameters:__
+
++ quiz: required, string
++ answers: required, array
++ question: required, string
++ alternative: required, string
+
+__Headers__
+
++ _x-access-token: Bearer "add the token here"_
+
+__Responses:__
+    
+    200 - OK.
+	401 - Unauthorized.
+    500 - Server Error.
+
+If everything goes right the server will return a json:
+
+    [
+        {
+            "question": "02c15778-d052-427c-a618-f848e22baedd",
+            "alternative": "d06d66bb-d6cc-4a4e-b1fb-5aa2066b4706"
+            "isCorrect": "true"
+        },
+        {
+            "question": "cea94081-d418-4104-9637-6430e13005b3",
+            "alternative": "157a3b00-89d3-4e46-9759-96a2c6843f28",
+            "isCorrect": "true"
+        },
+        {
+            "question": "f4c5104a-c02c-4598-87a1-2a46e702f38e",
+            "alternative": "ad910cdd-8214-45af-9ebe-f74a6f525606",
+            "isCorrect": "true"
+        }
+    ]
+
 ### Delete a quiz by its ID
 
 __Description:__
