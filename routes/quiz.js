@@ -50,6 +50,28 @@ router.get("/:quiz", async (req, res) => {
     .then(quiz => res.status(200).json(quiz));
 });
 
+router.post("/answer", async (req, res) => {
+    const { quiz, answers } = req.body;
+
+    const answer = answers[0];
+
+    await Quiz.findByPk(quiz, {
+        attributes: ["id", "title"],
+        include: {
+            model: Question,
+            attributes: ["id", "question"],
+            where: { id: answer.question },
+            include: {
+                model: Alternative,
+                attributes: ["id", "alternative", "isCorrect"],
+                where: { id: answer.alternative, isCorrect: true }
+            }
+        }
+    })
+    .catch(err => res.status(500).json(err))
+    .then(data => res.status(200).json(data));
+});
+
 router.delete("/", async (req, res) => {
     const { quiz } = req.body;
     
